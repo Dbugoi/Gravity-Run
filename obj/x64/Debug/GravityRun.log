@@ -1,0 +1,11 @@
+﻿  Escenario.cpp
+  GameObject.cpp
+  Jugador.cpp
+  Info: Boost.Config is older than your compiler version - probably nothing bad will happen - but you may wish to look for an update Boost version.  Define BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE to suppress this message.
+c:\users\usuario_local\downloads\of_v0.11.2_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(326): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos (compilando archivo de origen Escenario.cpp)
+c:\users\usuario_local\downloads\of_v0.11.2_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(331): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos (compilando archivo de origen Escenario.cpp)
+c:\users\usuario_local\downloads\of_v0.11.2_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(912): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos (compilando archivo de origen Escenario.cpp)
+c:\users\usuario_local\downloads\of_v0.11.2_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(913): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos (compilando archivo de origen Escenario.cpp)
+c:\users\usuario_local\downloads\of_v0.11.2_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(914): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos (compilando archivo de origen Escenario.cpp)
+c:\users\usuario_local\downloads\of_v0.11.2_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(915): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos (compilando archivo de origen Escenario.cpp)
+c:\users\usuario_local\downloads\of_v0.11.2_vs2017_release\apps\myapps\gravityrun\escenario.h(8): fatal error C1075: "{": no se encontró ningún token coincidente (compilando archivo de origen Escenario.cpp)

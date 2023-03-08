@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxBox2d.h"
+#include "../Escenario.h"
 
 class ofApp : public ofBaseApp{
 
@@ -22,8 +23,8 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		ofxBox2d mundoA;           // the box2d world
-		ofxBox2d mundoB;           // the box2d world
+		Escenario escenarioA;           // the box2d world
+		Escenario escenarioB;           // the box2d world
 		vector<shared_ptr<ofxBox2dRect>> jugadores;           // default box2d rects
 		
 };

@@ -5,18 +5,12 @@ void ofApp::setup(){
 	ofBackground(214,218,188,88);
 
 	//Mundo jugador 1
-	mundoA.init();
-	mundoA.setGravity(0, 10);
-	mundoA.createGround();
-	mundoA.createBounds(0, 0, ofGetWidth(), ofGetHeight() / 2);
-	mundoA.setFPS(60.0);
+	escenarioA = Escenario(0);
+	escenarioB = Escenario(ofGetHeight() / 2);
+	
 
 	//Mundo jugador 2
-	mundoB.init();
-	mundoB.setGravity(0, 10);
-	mundoB.createGround();
-	mundoB.createBounds(0, ofGetHeight()/2, ofGetWidth(), ofGetHeight()/2);
-	mundoB.setFPS(60.0);
+	
 
 	auto jugador1 = make_shared<ofxBox2dRect>();
 	jugador1->setPhysics(3.0, 0, 0.1);
