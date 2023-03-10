@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxBox2d.h"
-#include "../Escenario.h"
+#include "Escenario.h"
 
 class ofApp : public ofBaseApp{
 
