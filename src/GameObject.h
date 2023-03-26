@@ -11,7 +11,8 @@ protected:
 	shared_ptr<ofxBox2dBaseShape> figure;
 
 public:
+
 	virtual void setup() = 0;
-	void update();
+	virtual void update() = 0;
 	void draw();
 };

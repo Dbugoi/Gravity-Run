@@ -3,12 +3,16 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	ofBackground(214,218,188,88);
-
+	separador = ofRectangle(0, ofGetHeight() / 2 - 4, ofGetWidth(), 8);
+	grav = 20;
 	//Mundo jugador 1
 	escenarioA = Escenario(0, 100, ofColor::orange);
-	escenarioB = Escenario(ofGetHeight() / 2, 600, ofColor::blue);
+	escenarioB = Escenario(ofGetHeight() / 2 + 4, 600, ofColor::blue);
 	escenarioA.setup();
 	escenarioB.setup();
+
+
+	
 
 }
 
@@ -21,8 +25,11 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	ofSetColor(ofColor::mediumPurple);
+	ofDrawRectangle(separador);
 	escenarioA.draw();
 	escenarioB.draw();
+	
 	//Para que no se mueva un objeto le ponemos densidad 0 
 	/*auto rect = make_shared<ofxBox2dRect>();
 	rect->setPhysics(0.0, 0, 0.0);
@@ -34,19 +41,19 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	/*if (key == 'w') {
-		mundoA.setGravity(0, -10);
+	if (key == 'w') {
+		escenarioA.setGravity(-grav);
 	}
 	else if (key == 's') {
-		mundoA.setGravity(0, 10);
+		escenarioA.setGravity(grav);
 	}
 	if (key == OF_KEY_UP) {
-		mundoB.setGravity(0, -10);
+		escenarioB.setGravity(-grav);
 	}
 	else if (key == OF_KEY_DOWN) {
-		mundoB.setGravity(0,10);
+		escenarioB.setGravity(grav);
 	}
-	*/
+	
 }
 
 //--------------------------------------------------------------
