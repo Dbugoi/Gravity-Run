@@ -10,3 +10,7 @@ void Jugador::setup() {
 void Jugador::update() {
 	
 }
+
+int Jugador::checkCollision() {
+	return 0;
+}

@@ -5,3 +5,7 @@ void GameObject::draw() {
 	ofSetColor(color);
 	figure->draw();
 }
+
+int GameObject::checkCollision() {
+	return 0;
+}

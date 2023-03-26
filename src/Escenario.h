@@ -1,24 +1,28 @@
 #pragma once
 
+
 #include "ofMain.h"
 #include "ofxBox2d.h"
 #include "GameObject.h"
 #include "Jugador.h"
 #include "Obstaculo.h"
 
+
 class Escenario {
 private:
 	ofxBox2d *mundo;
-	vector<GameObject> gameObjects;
+	vector<GameObject*> gameObjects;
 	Jugador jugador;
-	Obstaculo obs;
+	int y;
+	//Obstaculo obs;
 
 
 
 public:
 	Escenario::Escenario(){}
 
-	Escenario::Escenario(int y, int altura, ofColor colorJugador) {
+	Escenario::Escenario(int pY, int altura, ofColor colorJugador) {
+		y = pY;
 		mundo = new ofxBox2d();
 		mundo->init();
 		mundo->setGravity(0, 10);
@@ -26,7 +30,7 @@ public:
 		//mundo.createGround();
 		mundo->setFPS(60.0);
 		jugador = Jugador(mundo, altura, colorJugador);
-		obs = Obstaculo(mundo, (ofGetHeight() / 2 - 54) + y, ofColor::brown);
+
 	}
 
 	void setup();

@@ -17,4 +17,5 @@ private:
 	}
 	void setup() override;
 	void update() override;
+	int checkCollision() override;
 };
