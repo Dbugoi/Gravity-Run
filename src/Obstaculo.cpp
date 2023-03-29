@@ -12,7 +12,7 @@ void Obstaculo::setup() {
 
 void Obstaculo::update() {
 	auto aux = figure->getPosition();
-	aux.x--;
+	aux.x -= 5;
 	figure->setPosition(aux);
 }
 

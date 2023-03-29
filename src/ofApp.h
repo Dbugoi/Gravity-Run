@@ -27,5 +27,9 @@ class ofApp : public ofBaseApp{
 		Escenario escenarioB;           // the box2d world
 		vector<shared_ptr<ofxBox2dRect>> jugadores;           // default box2d rects
 		ofRectangle separador;
-		int grav;
+		int grav, numObstaculos;
+		vector<vector<int>> obstaculos;
+
+
+
 };

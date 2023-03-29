@@ -1,13 +1,29 @@
 #include "ofApp.h"
+#include <stdlib.h>     /* srand, rand */
+#include <time.h> 
 
 //--------------------------------------------------------------
 void ofApp::setup(){
 	ofBackground(214,218,188,88);
 	separador = ofRectangle(0, ofGetHeight() / 2 - 4, ofGetWidth(), 8);
-	grav = 20;
-	//Mundo jugador 1
-	escenarioA = Escenario(0, 100, ofColor::orange);
-	escenarioB = Escenario(ofGetHeight() / 2 + 4, 600, ofColor::blue);
+	grav = 50;
+	//Generacion aleatoria de obstaculos
+	numObstaculos = 100;
+	srand(time(NULL));
+	int x = 500, lon = 0;
+	for (int i = 0; i < numObstaculos; i++) {
+		vector<int> aux;
+		aux.push_back(x); //Posicion horizotal
+		lon = rand() % 150 + 50;
+		aux.push_back(lon); //Longitud
+		aux.push_back(rand() % 200 + 50); //Altura
+		aux.push_back(rand() % 2); //Arriba o abajo
+		x += lon;
+		x += rand() % 150 + 150;
+		obstaculos.push_back(aux);
+	}
+	escenarioA = Escenario(grav, 0, 100, ofColor::orange, obstaculos);
+	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, 600, ofColor::blue, obstaculos);
 	escenarioA.setup();
 	escenarioB.setup();
 
@@ -20,7 +36,22 @@ void ofApp::setup(){
 void ofApp::update(){
 	escenarioA.update();
 	escenarioB.update();
+	if (escenarioA.getHasCollided()) {
+		if (escenarioB.getHasCollided()) {
 
+		}
+		else {
+
+		}
+	}
+	else if (escenarioB.getHasCollided()) {
+		if (escenarioA.getHasCollided()) {
+
+		}
+		else {
+
+		}
+	}
 }
 
 //--------------------------------------------------------------

@@ -2,8 +2,9 @@
 
 void Escenario :: setup() {
 	jugador.setup();
-	gameObjects.push_back(new Obstaculo(mundo, 500, y, 50, 100, true, ofColor::brown));
-	gameObjects.push_back(new Obstaculo(mundo, 800, y, 200, 100, false, ofColor::forestGreen));
+	for (vector<int> listaObs : listaObstaculos) {
+		gameObjects.push_back(new Obstaculo(mundo, listaObs[0], y, listaObs[1], listaObs[2], listaObs[3], ofColor::brown));
+	}
 	for (int i = 0; i < gameObjects.size(); i++)
 		gameObjects[i]->setup();
 }
@@ -13,7 +14,7 @@ void Escenario::update() {
 	for (int i = 0; i < gameObjects.size(); i++) {
 		gameObjects[i]->update();
 		if (gameObjects[i]->checkCollision() == 1) {
-			mundo->setGravityY(-500);
+			hasCollided = true;
 		}
 	}	
 }
@@ -26,5 +27,9 @@ void Escenario::draw() {
 
 void Escenario::setGravity(int value) {
 		mundo->setGravityY(value);
+}
+
+bool Escenario::getHasCollided() {
+	return getHasCollided;
 }
 

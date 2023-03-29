@@ -14,18 +14,21 @@ private:
 	vector<GameObject*> gameObjects;
 	Jugador jugador;
 	int y;
-	//Obstaculo obs;
+	vector<vector<int>> listaObstaculos;
+	bool hasCollided;
 
 
 
 public:
 	Escenario::Escenario(){}
 
-	Escenario::Escenario(int pY, int altura, ofColor colorJugador) {
+	Escenario::Escenario(int gravity,  int pY, int altura, ofColor colorJugador, vector<vector<int>> obst) {
 		y = pY;
+		listaObstaculos = obst;
+		hasCollided = false;
 		mundo = new ofxBox2d();
 		mundo->init();
-		mundo->setGravity(0, 10);
+		mundo->setGravity(0, 20);
 		mundo->createBounds(0, y, ofGetWidth(), ofGetHeight() / 2 - 4);
 		//mundo.createGround();
 		mundo->setFPS(60.0);
@@ -37,4 +40,5 @@ public:
 	void update();
 	void draw();
 	void setGravity(int value);
+	bool getHasCollided();
 };
