@@ -29,6 +29,7 @@ class ofApp : public ofBaseApp{
 		ofRectangle separador;
 		int grav, numObstaculos;
 		vector<vector<int>> obstaculos;
+		int winner;  // 0:jugando ; 1:gana jugador1 ; 2:gana jugador2 ; 3:empate
 
 
 

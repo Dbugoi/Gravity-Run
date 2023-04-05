@@ -5,12 +5,14 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	ofBackground(214,218,188,88);
+	ofSetFrameRate(60);
 	separador = ofRectangle(0, ofGetHeight() / 2 - 4, ofGetWidth(), 8);
-	grav = 50;
+	grav = 100;
+	winner = 0; //0: jugando 
 	//Generacion aleatoria de obstaculos
 	numObstaculos = 100;
 	srand(time(NULL));
-	int x = 500, lon = 0;
+	int x = 1500, lon = 0;
 	for (int i = 0; i < numObstaculos; i++) {
 		vector<int> aux;
 		aux.push_back(x); //Posicion horizotal
@@ -22,8 +24,8 @@ void ofApp::setup(){
 		x += rand() % 150 + 150;
 		obstaculos.push_back(aux);
 	}
-	escenarioA = Escenario(grav, 0, 100, ofColor::orange, obstaculos);
-	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, 600, ofColor::blue, obstaculos);
+	escenarioA = Escenario(grav, 0, ofGetHeight() / 2 - 8, ofColor::orange, obstaculos);
+	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, ofGetHeight() -8, ofColor::blue, obstaculos);
 	escenarioA.setup();
 	escenarioB.setup();
 
@@ -34,23 +36,25 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	escenarioA.update();
-	escenarioB.update();
 	if (escenarioA.getHasCollided()) {
 		if (escenarioB.getHasCollided()) {
-
+			winner = 3;
 		}
 		else {
-
+			winner = 2;
 		}
 	}
 	else if (escenarioB.getHasCollided()) {
 		if (escenarioA.getHasCollided()) {
-
+			winner = 3;
 		}
 		else {
-
+			winner = 1;
 		}
+	}
+	else {
+		escenarioA.update();
+		escenarioB.update();
 	}
 }
 
@@ -60,7 +64,21 @@ void ofApp::draw(){
 	ofDrawRectangle(separador);
 	escenarioA.draw();
 	escenarioB.draw();
+
+	ofSetColor(ofColor::black);
+	if (winner == 1) {
+		ofDrawBitmapString("Jugador 1 ha ganado", ofGetWidth() / 2, ofGetHeight() / 2);
+	}
+	else if (winner == 2) {
+		ofDrawBitmapString("Jugador 2 ha ganado", ofGetWidth() / 2, ofGetHeight() / 2);
+	}
+	else if (winner == 3) {
+		ofDrawBitmapString("EMPATE", ofGetWidth() / 2, ofGetHeight() / 2);
+	}
 	
+
+	cout << ofGetFrameRate() << endl;
+
 	//Para que no se mueva un objeto le ponemos densidad 0 
 	/*auto rect = make_shared<ofxBox2dRect>();
 	rect->setPhysics(0.0, 0, 0.0);

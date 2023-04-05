@@ -6,7 +6,7 @@
 #include "GameObject.h"
 #include "Jugador.h"
 #include "Obstaculo.h"
-
+#include "PowerUp.h"
 
 class Escenario {
 private:
