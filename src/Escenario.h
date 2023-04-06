@@ -16,6 +16,9 @@ private:
 	int y;
 	vector<vector<int>> listaObstaculos;
 	bool hasCollided;
+	int powerUpTime;
+	int powerUpType;
+	ofColor colorInicialJugador;
 
 
 
@@ -33,7 +36,9 @@ public:
 		//mundo.createGround();
 		mundo->setFPS(60.0);
 		jugador = Jugador(mundo, altura, colorJugador);
-
+		powerUpTime = 0;
+		powerUpType = 0;
+		colorInicialJugador = colorJugador;
 	}
 
 	void setup();
@@ -41,4 +46,5 @@ public:
 	void draw();
 	void setGravity(int value);
 	bool getHasCollided();
+	int getPowerUpType();
 };

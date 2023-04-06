@@ -20,4 +20,6 @@ public:
 	void setup() override;
 	void update() override;
 	int checkCollision() override;
+	//void draw();
+	
 };

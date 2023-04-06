@@ -8,6 +8,7 @@ class GameObject {
 protected:
 	int x, y;
 	ofColor color;
+	bool isAlive = true;
 	shared_ptr<ofxBox2dBaseShape> figure;
 
 public:

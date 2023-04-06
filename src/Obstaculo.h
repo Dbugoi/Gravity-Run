@@ -8,6 +8,7 @@ private:
 	ofxBox2d *mundo;
 	int longitud;
 	int altura;
+	bool hasCollided = false;
 	
 public:
 

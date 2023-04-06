@@ -18,4 +18,6 @@ private:
 	void setup() override;
 	void update() override;
 	int checkCollision() override;
+	void setColor(ofColor col);
+	void changeSize(bool toSmall);
 };

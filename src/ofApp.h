@@ -26,10 +26,11 @@ class ofApp : public ofBaseApp{
 		Escenario escenarioA;           // the box2d world
 		Escenario escenarioB;           // the box2d world
 		vector<shared_ptr<ofxBox2dRect>> jugadores;           // default box2d rects
-		ofRectangle separador;
+		ofRectangle separador, bloqueoEscenarioA, bloqueoEscenarioB, bloqueoDoble;
 		int grav, numObstaculos;
 		vector<vector<int>> obstaculos;
 		int winner;  // 0:jugando ; 1:gana jugador1 ; 2:gana jugador2 ; 3:empate
+		int powerUpTypeEscA, powerUpTypeEscB;
 
 
 

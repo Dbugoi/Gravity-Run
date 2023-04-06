@@ -10,13 +10,22 @@ void PowerUp::setup() {
 
 void PowerUp::update() {
 	auto aux = figure->getPosition();
-	aux.x -= 10;
+	aux.x -= 5; //TODO -10
 	figure->setPosition(aux);
 }
 
 int PowerUp::checkCollision() {
-	for (b2ContactEdge* edge = figure->body->GetContactList(); edge; edge = edge->next) {
-		return tipo;
-	}
+	if(isAlive)
+		for (b2ContactEdge* edge = figure->body->GetContactList(); edge; edge = edge->next) {
+			isAlive = false;
+			return tipo;
+		}
 	return 0;
 }
+
+/*
+void PowerUp::draw() {
+	cout << "Dibujo" << endl;
+	//GameObject::draw();
+}
+*/
