@@ -15,7 +15,7 @@ void Escenario :: setup() {
 	for (vector<int> listaObs : listaObstaculos) {
 		xPowerUp = (listaObs[0]-(listaObs[1] / 2) - xAux)/2 + xAux;    
 		//obstColor = powerUpColors[rand() % 5 + 2];
-		gameObjects.push_back(new Obstaculo(mundo, listaObs[0], y, listaObs[1], listaObs[2], listaObs[3], ofColor::brown));
+		gameObjects.push_back(new Obstaculo(mundo, listaObs[0], y, listaObs[1], listaObs[2], listaObs[3], listaObs[4],ofColor::brown));
 		xAux = (listaObs[0] + listaObs[1]/2);		//x del objeto + longitud 
 		if (rand() % 8 == 0) {
 			powerType = rand() % 5 + 2;
@@ -25,6 +25,7 @@ void Escenario :: setup() {
 	}
 	for (int i = 0; i < gameObjects.size(); i++)
 		gameObjects[i]->setup();
+
 }
 void Escenario::update() {
 	mundo->update();
@@ -101,3 +102,4 @@ bool Escenario::getHasCollided() {
 int Escenario::getPowerUpType() {
 	return powerUpType;
 }
+

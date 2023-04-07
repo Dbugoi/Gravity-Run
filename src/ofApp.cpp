@@ -16,6 +16,7 @@ void ofApp::setup(){
 	numObstaculos = 100;
 	srand(time(NULL));
 	int x = 1500, lon = 0;
+	//generacion de obstaculos
 	for (int i = 0; i < numObstaculos; i++) {
 		vector<int> aux;
 		aux.push_back(x); //Posicion horizotal
@@ -23,12 +24,14 @@ void ofApp::setup(){
 		aux.push_back(lon); //Longitud
 		aux.push_back(rand() % 200 + 50); //Altura
 		aux.push_back(rand() % 2); //Arriba o abajo
+		//aux.push_back(rand() % 3);//tipo obstaculo   0:rectangulo ; 1:triangulo rectangulo izquierda ; 2:triangulo rectangulo derecha ; 3: triangulo isosceles
+		aux.push_back(1);
 		x += lon;
 		x += rand() % 150 + 150;
 		obstaculos.push_back(aux);
 	}
 	escenarioA = Escenario(grav, 0, ofGetHeight() / 2 - 8, ofColor::orange, obstaculos);
-	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, ofGetHeight() -8, ofColor::blue, obstaculos);
+	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, ofGetHeight() -4, ofColor::blue, obstaculos);
 	escenarioA.setup();
 	escenarioB.setup();
 
@@ -40,22 +43,22 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	if (escenarioA.getHasCollided()) {
-		/*if (escenarioB.getHasCollided()) {
+		if (escenarioB.getHasCollided()) {
 			winner = 3;
 		}
 		else {
 			winner = 2;
-		}*/
-		winner = 2; //TODO eliminar
+		}
+		//winner = 2; //TODO eliminar
 	}
-	/*else if (escenarioB.getHasCollided()) {
+	else if (escenarioB.getHasCollided()) {
 		if (escenarioA.getHasCollided()) {
 			winner = 3;
 		}
 		else {
 			winner = 1;
 		}
-	}*/
+	}
 	else {
 		escenarioA.update();
 		escenarioB.update();

@@ -31,11 +31,13 @@ public:
 		hasCollided = false;
 		mundo = new ofxBox2d();
 		mundo->init();
+		mundo->enableEvents();
 		mundo->setGravity(0, 20);
 		mundo->createBounds(0, y, ofGetWidth(), ofGetHeight() / 2 - 4);
-		//mundo.createGround();
+		//mundo->createGround();
+		mundo->registerGrabbing();
 		mundo->setFPS(60.0);
-		jugador = Jugador(mundo, altura, colorJugador);
+		jugador = Jugador(mundo, altura, colorJugador,pY);
 		powerUpTime = 0;
 		powerUpType = 0;
 		colorInicialJugador = colorJugador;
@@ -47,4 +49,5 @@ public:
 	void setGravity(int value);
 	bool getHasCollided();
 	int getPowerUpType();
+
 };

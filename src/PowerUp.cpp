@@ -15,11 +15,14 @@ void PowerUp::update() {
 }
 
 int PowerUp::checkCollision() {
-	if(isAlive)
+	if (isAlive) {
 		for (b2ContactEdge* edge = figure->body->GetContactList(); edge; edge = edge->next) {
-			isAlive = false;
-			return tipo;
+			if (edge->contact->IsTouching()) {
+				isAlive = false;
+				return tipo;
+			}
 		}
+	}
 	return 0;
 }
 
