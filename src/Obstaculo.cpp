@@ -8,19 +8,30 @@ void Obstaculo::setup() {
 	figure->body->GetFixtureList()->SetSensor(true);
 	*/
 
-	if (tipo == 1) {
+	if (tipo == 0) { //Rectangulo
 		auto aux = make_shared<ofxBox2dRect>();
 		aux->setup(mundo->getWorld(), x, y, longitud, altura);
 		figure = aux;
 	}
-	else if (tipo == 1) {
+	else {
 		auto triangle = std::make_shared<ofxBox2dPolygon>();
-		cout << x << " " << y << endl;
-		triangle->addTriangle(ofDefaultVertexType(x, y+ 0, 0),
-			ofDefaultVertexType(x + longitud, y + 0, 0),
-			ofDefaultVertexType(x, y+altura, 0));
+		if (tipo == 1) { //Triangulo rectangulo izquierda
+			triangle->addTriangle(ofDefaultVertexType(x, yBaseTriangulo, 0),
+				ofDefaultVertexType(x + longitud, yBaseTriangulo, 0),
+				ofDefaultVertexType(x, y, 0));
+		}
 
-	
+		else if (tipo == 2) { //Triangulo rectangulo izquierda
+			triangle->addTriangle(ofDefaultVertexType(x, yBaseTriangulo, 0),
+				ofDefaultVertexType(x + longitud, yBaseTriangulo, 0),
+				ofDefaultVertexType(x + longitud, y, 0));
+		}
+		else {
+			triangle->addTriangle(ofDefaultVertexType(x, yBaseTriangulo, 0),
+				ofDefaultVertexType(x + longitud, yBaseTriangulo, 0),
+				ofDefaultVertexType(x + longitud / 2, y, 0));
+		}
+
 		triangle->create(mundo->getWorld());
 		figure = triangle;
 	}

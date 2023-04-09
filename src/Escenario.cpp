@@ -5,6 +5,7 @@ void Escenario :: setup() {
 	jugador.setup();
 	int xPowerUp = 1000, xAux = 1000, powerType;
 	ofColor obstColor;
+	vector<int> listaObs;
 	map<int, ofColor> powerUpColors = {
 	{ 2, ofColor::green }, //Invertir controles
 	{ 3, ofColor::chocolate }, //Bloquear pantalla rival
@@ -12,10 +13,12 @@ void Escenario :: setup() {
 	{ 5, ofColor::pink}, //Escudo
 	{ 6, ofColor::black} //Hacerte pequeño
 	};
-	for (vector<int> listaObs : listaObstaculos) {
+	for (pair<vector<int>, ofColor> pairObs : listaObstaculos) {
+		listaObs = pairObs.first;
+		obstColor = pairObs.second;
 		xPowerUp = (listaObs[0]-(listaObs[1] / 2) - xAux)/2 + xAux;    
 		//obstColor = powerUpColors[rand() % 5 + 2];
-		gameObjects.push_back(new Obstaculo(mundo, listaObs[0], y, listaObs[1], listaObs[2], listaObs[3], listaObs[4],ofColor::brown));
+		gameObjects.push_back(new Obstaculo(mundo, listaObs[0], y, listaObs[1], listaObs[2], listaObs[3], listaObs[4], obstColor));
 		xAux = (listaObs[0] + listaObs[1]/2);		//x del objeto + longitud 
 		if (rand() % 8 == 0) {
 			powerType = rand() % 5 + 2;
@@ -93,6 +96,10 @@ void Escenario::draw() {
 
 void Escenario::setGravity(int value) {
 		mundo->setGravityY(value);
+		if (value > 0)
+			jugador.setIsGravityDown(true);
+		else
+			jugador.setIsGravityDown(false);	
 }
 
 bool Escenario::getHasCollided() {

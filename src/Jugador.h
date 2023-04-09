@@ -8,6 +8,7 @@ private:
 	int altura;
 	float mitadTamJugador; 
 	int desfaseY;
+	int isGravityDown;
 	public:
 
 	Jugador::Jugador() {}
@@ -17,11 +18,13 @@ private:
 		altura = alt;
 		color = col;
 		desfaseY = pY;
+		isGravityDown = true;
 	}
 	void setup() override;
 	void update() override;
 	int checkCollision() override;
 	void setColor(ofColor col);
 	void changeSize(bool toSmall);
+	void setIsGravityDown(bool value);
 
 };

@@ -10,11 +10,11 @@ void Jugador::setup() {
 
 void Jugador::update() {
 	//Formula para que evite colisionar con el suelo y reconozca colision con objetos
-	if (figure->getPosition().y + mitadTamJugador >= altura +3 ) {
-		//figure->setVelocity(0,0);
-		mundo->setGravityY(0);
-	}
-	if (figure->getPosition().y - mitadTamJugador <=  desfaseY+1) {
+	if ((figure->getPosition().y + mitadTamJugador >= altura +3) && isGravityDown) { //Hace que la gravedad del mundo sea 0 si el jugador esta tocando el suelo. Esto se debe a que si toca al tocar el suelo la gravedad es positiva (o negativa al tocar el techo), el jugador 
+		//figure->setVelocity(0,0);													 //atraviesa los obstaculos porque hemos desactivado las colisiones con ellos, aunque si detectamos solapamiento.
+		mundo->setGravityY(0);														 // isGravityDown indica si la gravedad del mundo era positiva o negativa. Esto sirve para no poner a 0 la gravedad cuando un jugador toca el suelo con gravedad negativa (o el techo con gravedad positiva). 
+	}																				 // Si no tenemos en cuenta esto ultimo, el jugador se quedara pegado al suelo o techo aunque la gravedad fuese al contrario.
+	if ((figure->getPosition().y - mitadTamJugador <=  desfaseY+1) && !isGravityDown) {
 		mundo->setGravityY(0);
 	}
 }
@@ -40,4 +40,8 @@ void Jugador::changeSize(bool toSmall) {
 		mitadTamJugador = 25;
 	}
 	figure = aux;
+}
+
+void Jugador::setIsGravityDown(bool value) {
+	isGravityDown = value;
 }

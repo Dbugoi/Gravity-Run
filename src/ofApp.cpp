@@ -1,6 +1,6 @@
 #include "ofApp.h"
 #include <stdlib.h>     /* srand, rand */
-#include <time.h> 
+#include <time.h>
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -15,20 +15,28 @@ void ofApp::setup(){
 	//Generacion aleatoria de obstaculos
 	numObstaculos = 100;
 	srand(time(NULL));
-	int x = 1500, lon = 0;
+	map<int, ofColor> coloresObstaculos = {
+	{ 0, ofColor::brown }, //Invertir controles
+	{ 1, ofColor::blue }, //Bloquear pantalla rival
+	{ 2, ofColor::green}, //Bloquear ambas pantallas
+	{ 3, ofColor::yellow}, //Escudo
+	};
+
+	int x = 1500, lon = 0, tipoObstaculo;
 	//generacion de obstaculos
 	for (int i = 0; i < numObstaculos; i++) {
-		vector<int> aux;
-		aux.push_back(x); //Posicion horizotal
+		vector<int> vecAux;
+		vecAux.push_back(x); //Posicion horizotal
 		lon = rand() % 150 + 50;
-		aux.push_back(lon); //Longitud
-		aux.push_back(rand() % 200 + 50); //Altura
-		aux.push_back(rand() % 2); //Arriba o abajo
-		//aux.push_back(rand() % 3);//tipo obstaculo   0:rectangulo ; 1:triangulo rectangulo izquierda ; 2:triangulo rectangulo derecha ; 3: triangulo isosceles
-		aux.push_back(1);
+		vecAux.push_back(lon); //Longitud
+		vecAux.push_back(rand() % 200 + 50); //Altura
+		vecAux.push_back(rand() % 2); //Arriba o abajo
+		tipoObstaculo = rand() % 4;
+		vecAux.push_back(tipoObstaculo);//tipo obstaculo   0:rectangulo ; 1:triangulo rectangulo izquierda ; 2:triangulo rectangulo derecha ; 3: triangulo isosceles
+		pair<vector<int>, ofColor> pairAux = make_pair(vecAux, coloresObstaculos[tipoObstaculo]);
 		x += lon;
 		x += rand() % 150 + 150;
-		obstaculos.push_back(aux);
+		obstaculos.push_back(pairAux);
 	}
 	escenarioA = Escenario(grav, 0, ofGetHeight() / 2 - 8, ofColor::orange, obstaculos);
 	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, ofGetHeight() -4, ofColor::blue, obstaculos);
@@ -42,6 +50,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	
 	if (escenarioA.getHasCollided()) {
 		if (escenarioB.getHasCollided()) {
 			winner = 3;
@@ -60,6 +69,7 @@ void ofApp::update(){
 		}
 	}
 	else {
+	
 		escenarioA.update();
 		escenarioB.update();
 	}

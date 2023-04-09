@@ -14,7 +14,7 @@ private:
 	vector<GameObject*> gameObjects;
 	Jugador jugador;
 	int y;
-	vector<vector<int>> listaObstaculos;
+	vector<pair<vector<int>, ofColor>> listaObstaculos;
 	bool hasCollided;
 	int powerUpTime;
 	int powerUpType;
@@ -25,7 +25,7 @@ private:
 public:
 	Escenario::Escenario(){}
 
-	Escenario::Escenario(int gravity,  int pY, int altura, ofColor colorJugador, vector<vector<int>> obst) {
+	Escenario::Escenario(int gravity,  int pY, int altura, ofColor colorJugador, vector<pair<vector<int>, ofColor>> obst) {
 		y = pY;
 		listaObstaculos = obst;
 		hasCollided = false;

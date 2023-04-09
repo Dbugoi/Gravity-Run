@@ -28,7 +28,7 @@ class ofApp : public ofBaseApp{
 		vector<shared_ptr<ofxBox2dRect>> jugadores;           // default box2d rects
 		ofRectangle separador, bloqueoEscenarioA, bloqueoEscenarioB, bloqueoDoble;
 		int grav, numObstaculos;
-		vector<vector<int>> obstaculos;
+		vector<pair<vector<int>, ofColor>> obstaculos;
 		int winner;  // 0:jugando ; 1:gana jugador1 ; 2:gana jugador2 ; 3:empate
 		int powerUpTypeEscA, powerUpTypeEscB;
 
