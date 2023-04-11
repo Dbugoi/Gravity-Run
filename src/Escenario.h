@@ -7,6 +7,7 @@
 #include "Jugador.h"
 #include "Obstaculo.h"
 #include "PowerUp.h"
+#include "Meta.h"
 
 class Escenario {
 private:
@@ -16,6 +17,7 @@ private:
 	int y;
 	vector<pair<vector<int>, ofColor>> listaObstaculos;
 	bool hasCollided;
+	bool hasFinished;
 	int powerUpTime;
 	int powerUpType;
 	ofColor colorInicialJugador;
@@ -29,6 +31,7 @@ public:
 		y = pY;
 		listaObstaculos = obst;
 		hasCollided = false;
+		hasFinished = false;  // Si se ha llegado a la meta
 		mundo = new ofxBox2d();
 		mundo->init();
 		mundo->enableEvents();
@@ -41,6 +44,7 @@ public:
 		powerUpTime = 0;
 		powerUpType = 0;
 		colorInicialJugador = colorJugador;
+		
 	}
 
 	void setup();
@@ -48,6 +52,7 @@ public:
 	void draw();
 	void setGravity(int value);
 	bool getHasCollided();
+	bool getHasFinished();
 	int getPowerUpType();
 
 };

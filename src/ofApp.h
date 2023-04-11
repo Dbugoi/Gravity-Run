@@ -32,6 +32,7 @@ class ofApp : public ofBaseApp{
 		int winner;  // 0:jugando ; 1:gana jugador1 ; 2:gana jugador2 ; 3:empate
 		int powerUpTypeEscA, powerUpTypeEscB;
 
+		ofTrueTypeFont verdana30;
 
 
 };

@@ -17,15 +17,15 @@ void Escenario :: setup() {
 		listaObs = pairObs.first;
 		obstColor = pairObs.second;
 		xPowerUp = (listaObs[0]-(listaObs[1] / 2) - xAux)/2 + xAux;    
-		//obstColor = powerUpColors[rand() % 5 + 2];
 		gameObjects.push_back(new Obstaculo(mundo, listaObs[0], y, listaObs[1], listaObs[2], listaObs[3], listaObs[4], obstColor));
 		xAux = (listaObs[0] + listaObs[1]/2);		//x del objeto + longitud 
 		if (rand() % 8 == 0) {
 			powerType = rand() % 5 + 2;
 			gameObjects.push_back(new PowerUp(mundo, xPowerUp,(rand() % (ofGetHeight()/2 - 50)) + 25 + y, powerUpColors[powerType], powerType));
 		}
-		
 	}
+
+	gameObjects.push_back(new Meta(mundo, xAux + 800,y));
 	for (int i = 0; i < gameObjects.size(); i++)
 		gameObjects[i]->setup();
 
@@ -72,6 +72,8 @@ void Escenario::update() {
 				}
 				powerUpTime = 300;
 				break;
+			case 7:
+				hasFinished = true;
 			default:
 				break;
 		}
@@ -105,7 +107,9 @@ void Escenario::setGravity(int value) {
 bool Escenario::getHasCollided() {
 	return hasCollided;
 }
-
+bool Escenario::getHasFinished() {
+	return hasFinished;
+}
 int Escenario::getPowerUpType() {
 	return powerUpType;
 }

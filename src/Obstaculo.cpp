@@ -48,10 +48,6 @@ void Obstaculo::update() {
 
 int Obstaculo::checkCollision() {
 	if (!hasCollided) {
-		/*for (b2ContactEdge* edge = figure->body->GetContactList(); edge; edge = edge->next) {
-			hasCollided = true;
-			return 1;
-		}*/
 		for (b2ContactEdge* edge = figure->body->GetContactList(); edge; edge = edge->next) {
 			if (edge->contact->IsTouching()) {
 				hasCollided = true;
