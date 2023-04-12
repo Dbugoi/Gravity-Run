@@ -1,5 +1,6 @@
 #include "Jugador.h"
 
+//Metodo que crea un cuadrado jugador en funcion de atributos  y lo introduce al mundo
 void Jugador::setup() {
 	auto aux = make_shared<ofxBox2dRect>();
 	aux->setPhysics(3.0, 0, 0.1);
@@ -19,14 +20,17 @@ void Jugador::update() {
 	}
 }
 
+//Metodo que comprueba si algo colisiona con el.// Siempre 0 ya que lo comprobamos en los que chocamos
 int Jugador::checkCollision() {
 	return 0;
 }
 
+//Metodo que nos permite cambiar el color del jugador
 void Jugador::setColor(ofColor col) {
 	color = col;
 }
 
+//Metodo que nos permite cambiar el tamaño del jugador
 void Jugador::changeSize(bool toSmall) {
 	int yChangeSize = figure->getPosition().y;
 	auto aux = make_shared<ofxBox2dRect>();
@@ -42,6 +46,7 @@ void Jugador::changeSize(bool toSmall) {
 	figure = aux;
 }
 
+//Metodo que nos permite cambiar el bool que nos indica si la gravedad esta down o no
 void Jugador::setIsGravityDown(bool value) {
 	isGravityDown = value;
 }

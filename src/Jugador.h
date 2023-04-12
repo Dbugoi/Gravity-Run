@@ -4,11 +4,11 @@
 
 class Jugador : public GameObject{
 private:
-	ofxBox2d *mundo;
-	int altura;
+	ofxBox2d *mundo;   //mundo ofbox2d 
+	int altura;		//altura figura
 	float mitadTamJugador; 
-	int desfaseY;
-	int isGravityDown;
+	int desfaseY;   
+	int isGravityDown;  
 	public:
 
 	Jugador::Jugador() {}

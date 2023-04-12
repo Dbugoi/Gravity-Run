@@ -6,10 +6,10 @@
 
 class Meta : public GameObject {
 private:
-	ofxBox2d *mundo;
-	bool hasCollided = false;
-	int longitud;
-	int altura;
+	ofxBox2d *mundo;    //mundo ofbox2d 
+	bool hasCollided = false;    //ha colisionado o no el jugador en contra suya
+	int longitud;   //longitud figura
+	int altura;		//altura figura
 	
 public:
 
@@ -18,9 +18,9 @@ public:
 	Meta::Meta(ofxBox2d * world, int pX, int pY) {
 		mundo = world;
 		longitud = 50;
-		altura = ofGetHeight()/2-4;
+		altura = ofGetHeight()/2-4;   //mitad de pantalla menos separador
 		x = pX;
-		y = pY+ altura/2;
+		y = pY+ altura/2;   //Posicionar la y en la mitad de la pantalla ya que se pinta desde el centro
 		color = ofColor::gold;
 	}
 	void setup() override;

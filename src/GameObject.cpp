@@ -1,5 +1,6 @@
 #include "GameObject.h"
 
+//Metodo que pinta el gameobject si esta vivo segun los atributos guardados
 void GameObject::draw() {
 	if (isAlive) {
 		int posXdraw = figure->getPosition().x;
@@ -12,6 +13,7 @@ void GameObject::draw() {
 
 }
 
+//Metodo que devuelve que la colison obtenida es de tipo 0
 int GameObject::checkCollision() {
 	return 0;
 }

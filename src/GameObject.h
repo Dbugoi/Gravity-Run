@@ -6,10 +6,10 @@
 
 class GameObject {
 protected:
-	int x, y;
-	ofColor color;
-	bool isAlive = true;
-	shared_ptr<ofxBox2dBaseShape> figure;
+	int x, y;  //posicion objeto
+	ofColor color;  //color objeto
+	bool isAlive = true;  //esta vivo o no 
+	shared_ptr<ofxBox2dBaseShape> figure;  //figura de ofbox2d 
 
 public:
 

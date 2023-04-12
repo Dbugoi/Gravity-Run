@@ -11,10 +11,10 @@
 
 class Escenario {
 private:
-	ofxBox2d *mundo;
-	vector<GameObject*> gameObjects;
-	Jugador jugador;
-	int y;
+	ofxBox2d *mundo;   //mundo ofbox2d 
+	vector<GameObject*> gameObjects;  //vector de objetos 
+	Jugador jugador;  //jugador
+	int y;    //posicion y 
 	vector<pair<vector<int>, ofColor>> listaObstaculos;
 	bool hasCollided;
 	bool hasFinished;
