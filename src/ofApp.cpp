@@ -31,7 +31,7 @@ void ofApp::setup(){
 		vector<int> vecAux;
 		vecAux.push_back(x);	//Posicion horizotal del objeto
 		lon = rand() % 150 + 50;		//Longitud es un random entre 50 y 200
-		vecAux.push_back(lon);	//Longitud aï¿½adida al vector
+		vecAux.push_back(lon);	//Longitud añadida al vector
 		vecAux.push_back(rand() % 200 + 50);	//Altura random entre 50 y 250
 		vecAux.push_back(rand() % 2);	//Arriba o abajo
 		tipoObstaculo = rand() % 4;   //Se elige el tipo de obstaculo

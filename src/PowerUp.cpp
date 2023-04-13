@@ -3,7 +3,7 @@
 //Metodo que crea un circulo de ofbox2d y lo introduce al mundo en la posicion deseada
 void PowerUp::setup() {
 	auto aux = make_shared<ofxBox2dCircle>();
-	aux->setup(mundo->getWorld(), x, y, 20);  //(world, x, y, radio)
+	aux->setup(mundo->getWorld(), x, y, 23);  //(world, x, y, radio)
 	figure = aux;
 	figure->body->GetFixtureList()->SetSensor(true);
 

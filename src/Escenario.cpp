@@ -22,7 +22,7 @@ void Escenario :: setup() {
 		xPowerUp = (listaObs[0]-(listaObs[1] / 2) - xAux)/2 + xAux;    
 		gameObjects.push_back(new Obstaculo(mundo, listaObs[0], y, listaObs[1], listaObs[2], listaObs[3], listaObs[4], obstColor));
 		xAux = (listaObs[0] + listaObs[1]/2);		//x del objeto + longitud 
-		if (rand() % 8 == 0) {
+		if (rand() % 15 == 0) {
 			powerType = rand() % 5 + 2;
 			gameObjects.push_back(new PowerUp(mundo, xPowerUp,(rand() % (ofGetHeight()/2 - 50)) + 25 + y, powerUpColors[powerType], powerType));
 		}
