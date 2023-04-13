@@ -34,5 +34,8 @@ class ofApp : public ofBaseApp{
 
 		ofTrueTypeFont verdana30;  //Fuente Texto
 
+		ofSoundPlayer music;
+
+
 
 };

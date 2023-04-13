@@ -4,7 +4,7 @@
 void GameObject::draw() {
 	if (isAlive) {
 		int posXdraw = figure->getPosition().x;
-		if (posXdraw <= ofGetWidth() + 100 && posXdraw > -100) {
+		if (posXdraw <= ofGetWidth() + 100 && posXdraw > -100) { //Para que solo se dibujen los objetos de dentro de la pantalla y no consuman recursos los de fuera
 			ofFill();
 			ofSetColor(color);
 			figure->draw();

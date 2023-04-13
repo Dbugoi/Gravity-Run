@@ -7,11 +7,11 @@ void Escenario :: setup() {
 	ofColor obstColor;
 	vector<int> listaObs;
 	map<int, ofColor> powerUpColors = {
-	{ 2, ofColor::green }, //Invertir controles
-	{ 3, ofColor::chocolate }, //Bloquear pantalla rival
-	{ 4, ofColor::purple}, //Bloquear ambas pantallas
-	{ 5, ofColor::pink}, //Escudo
-	{ 6, ofColor::black} //Hacerte pequeño
+	{ 2, ofColor(0,255,24) }, //Invertir controles
+	{ 3, ofColor(0,216,255) }, //Bloquear pantalla rival
+	{ 4, ofColor(255,111,105)}, //Bloquear ambas pantallas
+	{ 5, ofColor(255,204,92)}, //Escudo
+	{ 6, ofColor(255,218,30)} //Hacerte pequeño
 	};
 
 	/* A partir de la lista obstaculos cogemos y generamos los obstaculos en cada escenario. 
@@ -24,6 +24,7 @@ void Escenario :: setup() {
 		xAux = (listaObs[0] + listaObs[1]/2);		//x del objeto + longitud 
 		if (rand() % 8 == 0) {
 			powerType = rand() % 5 + 2;
+			//powerType = 2;
 			gameObjects.push_back(new PowerUp(mundo, xPowerUp,(rand() % (ofGetHeight()/2 - 50)) + 25 + y, powerUpColors[powerType], powerType));
 		}
 	}

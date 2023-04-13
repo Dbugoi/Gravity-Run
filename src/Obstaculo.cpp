@@ -37,7 +37,7 @@ void Obstaculo::setup() {
 //Metodo que actualiza la posicion del objeto restando la x para crear movimiento de derecha a izquierda
 void Obstaculo::update() {
 	auto aux = figure->getPosition();
-	aux.x -= 5; //TODO -10
+	aux.x -= speed; //TODO -10
 	figure->setPosition(aux);
 }
 

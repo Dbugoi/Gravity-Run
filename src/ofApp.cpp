@@ -6,23 +6,23 @@
 void ofApp::setup(){
 	//ofBackground(214,218,188,88);
 	
-	ofBackground(139,228,232);		//Color del fondo del juego
+	ofBackground(24,14,59);		//Color del fondo del juego
 	ofSetFrameRate(60);		 //Ponemos el framrate a 60 para que a todo el mundo le vaya el juego a la misma velocidad
 	separador = ofRectangle(0, ofGetHeight() / 2 - 4, ofGetWidth(), 8);		//Linea que separa las dos pantallas de los jugadores	
 	bloqueoEscenarioA = ofRectangle(0, 0, ofGetWidth(), ofGetHeight() / 2 - 4);		//Rectangulo que se pone para poner pantalla en negro al jugador 1
 	bloqueoEscenarioB = ofRectangle(0, ofGetHeight() / 2 + 4, ofGetWidth(), ofGetHeight() / 2 - 4);  //Rectangulo que se pone para poner pantalla en negro al jugador 2
-	bloqueoDoble = ofRectangle(ofGetWidth() / 2, 0, ofGetWidth() / 2, ofGetHeight());   //Rectangulo que se pinta para poner la mitad de la pantalla en negro a ambos jugadores
-	grav = 100;   //gravedad del mundo
+	bloqueoDoble = ofRectangle(ofGetWidth() / 2 + 200, 0, ofGetWidth() / 2 - 200, ofGetHeight());   //Rectangulo que se pinta para poner la mitad de la pantalla en negro a ambos jugadores
+	grav = 120;   //gravedad del mundo
 	winner = 0; //Indica el estado del juego (0: jugando ,1:ganador jugador1; 2:ganador jugador2; 3:empate; 4: Meta alcanzada
 	//Generacion aleatoria de obstaculos
-	numObstaculos = 20;
+	numObstaculos = 50;
 	srand(time(NULL));
 	//Mapa que indica para cada objeto el color que va a tener
 	map<int, ofColor> coloresObstaculos = {
-	{ 0, ofColor(232,75,58) }, //rectangulo 
-	{ 1, ofColor(232,46,170) },  // triangulo rectangulo izquierda; 
-	{ 2, ofColor(232,46,170)}, //triangulo rectangulo derecha; 
-	{ 3, ofColor(92,217,76)},  //triangulo isosceles
+	{ 0,  ofColor(91,54,224) }, //rectangulo  ofColor(188,44,232)   //ofColor(76,17,107)
+	{ 1, ofColor(91,54,224)},  // triangulo rectangulo izquierda; //ofColor(91,54,224)
+	{ 2,  ofColor(91,54,224)}, //triangulo rectangulo derecha; //ofColor(75,45,186)
+	{ 3,  ofColor(91,54,224)},  //triangulo isosceles  //ofColor(101,60,250)
 	};
 
 	int x = 1500, lon = 0, tipoObstaculo;  //X inicial donde empiezan los objetos a pintarse
@@ -38,21 +38,26 @@ void ofApp::setup(){
 		vecAux.push_back(tipoObstaculo);	//tipo obstaculo   0:rectangulo ; 1:triangulo rectangulo izquierda ; 2:triangulo rectangulo derecha ; 3: triangulo isosceles
 		pair<vector<int>, ofColor> pairAux = make_pair(vecAux, coloresObstaculos[tipoObstaculo]);
 		x += lon;    //Aumentamos la x inicial con la longitud del objeto 
-		x += rand() % 150 + 150;  ////Aumentamos la x con una longitud entre 150 y 300 para pintar el siguiente objeto
+		x += rand() % 150 + 200;  ////Aumentamos la x con una longitud entre 150 y 300 para pintar el siguiente objeto
 		obstaculos.push_back(pairAux);
 	}
-
+	// ofColor(232,134,70)
 	//Creamos los escenarios con sus respectivas medidas, colores y obstaculos
-	escenarioA = Escenario(grav, 0, ofGetHeight() / 2 - 8, ofColor(232,134,70), obstaculos);
-	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, ofGetHeight() -4, ofColor(232,134,70), obstaculos);
+	escenarioA = Escenario(grav, 0, ofGetHeight() / 2 - 8, ofColor(72,207,62), obstaculos);  
+	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, ofGetHeight() -4, ofColor(247,246,59), obstaculos);
 	escenarioA.setup();
 	escenarioB.setup();
 
 	//Fuente Verdana para pintar textos
 	ofTrueTypeFont::setGlobalDpi(72);
-	verdana30.load("verdana.ttf", 30, true, true);
+	verdana30.load("verdana.ttf", 50, true, true);
 	verdana30.setLineHeight(18.0f);
 	verdana30.setLetterSpacing(1.037);
+	
+
+	//Musica
+	music.load("music.mp3");
+	//music.play();
 
 }
 
@@ -108,10 +113,12 @@ void ofApp::draw(){
 			ofDrawRectangle(bloqueoDoble);
 		}
 		if (powerUpTypeEscA == 2) {
-			verdana30.drawString("CONTROLES INVERTIDOS", ofGetWidth() / 2 - 150, ofGetHeight() / 4 * 3 );
+			ofSetColor(ofColor(206, 250, 5));
+			verdana30.drawString("CONTROLES INVERTIDOS", ofGetWidth() / 2  -verdana30.getStringBoundingBox("CONTROLES INVERTIDOS", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3 );
 		}
 		if (powerUpTypeEscB == 2) {
-			verdana30.drawString("CONTROLES INVERTIDOS", ofGetWidth() / 2 - 150, ofGetHeight() / 4);
+			ofSetColor(ofColor(206, 250, 5));
+			verdana30.drawString("CONTROLES INVERTIDOS", ofGetWidth() / 2 - verdana30.getStringBoundingBox("CONTROLES INVERTIDOS", 0, 0).getWidth() / 2, ofGetHeight() / 4);
 		}
 	}
 
@@ -120,23 +127,23 @@ void ofApp::draw(){
 	ofDrawRectangle(separador);
 
 	//Pintamos resultado de la partida en funcion del ganador o si han llegado a meta
-	ofSetColor(ofColor::black); 
+	ofSetColor(ofColor(206,250,5)); 
 	
 	if (winner == 1) {
-		verdana30.drawString("HAS GANADO", ofGetWidth() / 2 -100, ofGetHeight() / 4 );
-		verdana30.drawString("HAS PERDIDO", ofGetWidth() / 2 - 100, ofGetHeight() / 4 * 3);
+		verdana30.drawString("HAS GANADO", ofGetWidth() / 2 - verdana30.getStringBoundingBox("HAS GANADO", 0, 0).getWidth()/2 , ofGetHeight() / 4 );
+		verdana30.drawString("HAS PERDIDO", ofGetWidth() / 2 - verdana30.getStringBoundingBox("HAS PERDIDO", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 	else if (winner == 2) {
-		verdana30.drawString("HAS PERDIDO", ofGetWidth() / 2 - 100, ofGetHeight() / 4);
-		verdana30.drawString("HAS GANADO", ofGetWidth() / 2 - 100, ofGetHeight() / 4 * 3);
+		verdana30.drawString("HAS PERDIDO", ofGetWidth() / 2 - verdana30.getStringBoundingBox("HAS PERDIDO", 0, 0).getWidth() / 2, ofGetHeight() / 4);
+		verdana30.drawString("HAS GANADO", ofGetWidth() / 2 - verdana30.getStringBoundingBox("HAS GANADO", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 	else if (winner == 3) {
-		verdana30.drawString("EMPATE", ofGetWidth() / 2 - 70, ofGetHeight() / 4);
-		verdana30.drawString("EMPATE", ofGetWidth() / 2 - 70, ofGetHeight() / 4 * 3);
+		verdana30.drawString("EMPATE", ofGetWidth() / 2 - 70 - verdana30.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4);
+		verdana30.drawString("EMPATE", ofGetWidth() / 2 - 70 - verdana30.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 	else if (winner == 4) {
-		verdana30.drawString("META ALCANZADA", ofGetWidth() / 2 - 100, ofGetHeight() / 4);
-		verdana30.drawString("META ALCANZADA", ofGetWidth() / 2 - 100, ofGetHeight() / 4 * 3);
+		verdana30.drawString("META ALCANZADA", ofGetWidth() / 2 - verdana30.getStringBoundingBox("META ALCANZADA", 0, 0).getWidth() / 2, ofGetHeight() / 4);
+		verdana30.drawString("META ALCANZADA", ofGetWidth() / 2 - verdana30.getStringBoundingBox("META ALCANZADA", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 
 }

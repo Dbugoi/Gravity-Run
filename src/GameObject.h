@@ -10,6 +10,7 @@ protected:
 	ofColor color;  //color objeto
 	bool isAlive = true;  //esta vivo o no 
 	shared_ptr<ofxBox2dBaseShape> figure;  //figura de ofbox2d 
+	int speed = 15;
 
 public:
 
