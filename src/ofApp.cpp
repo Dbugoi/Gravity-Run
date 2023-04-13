@@ -18,12 +18,12 @@ void ofApp::setup(){
 	numObstaculos = 50;
 	srand(time(NULL));
 	//Mapa que indica para cada objeto el color que va a tener
-	map<int, ofColor> coloresObstaculos = {
+	/*map<int, ofColor> coloresObstaculos = {
 	{ 0,  ofColor(91,54,224) }, //rectangulo  ofColor(188,44,232)   //ofColor(76,17,107)
 	{ 1, ofColor(91,54,224)},  // triangulo rectangulo izquierda; //ofColor(91,54,224)
 	{ 2,  ofColor(91,54,224)}, //triangulo rectangulo derecha; //ofColor(75,45,186)
 	{ 3,  ofColor(91,54,224)},  //triangulo isosceles  //ofColor(101,60,250)
-	};
+	};*/
 
 	int x = 1500, lon = 0, tipoObstaculo;  //X inicial donde empiezan los objetos a pintarse
 	//generacion de obstaculos para que ambos escenarios tengan el mismo nivel
@@ -36,28 +36,28 @@ void ofApp::setup(){
 		vecAux.push_back(rand() % 2);	//Arriba o abajo
 		tipoObstaculo = rand() % 4;   //Se elige el tipo de obstaculo
 		vecAux.push_back(tipoObstaculo);	//tipo obstaculo   0:rectangulo ; 1:triangulo rectangulo izquierda ; 2:triangulo rectangulo derecha ; 3: triangulo isosceles
-		pair<vector<int>, ofColor> pairAux = make_pair(vecAux, coloresObstaculos[tipoObstaculo]);
+		pair<vector<int>, ofColor> pairAux = make_pair(vecAux, ofColor(91, 54, 224)); //coloresObstaculos[tipoObstaculo]
 		x += lon;    //Aumentamos la x inicial con la longitud del objeto 
 		x += rand() % 150 + 200;  ////Aumentamos la x con una longitud entre 150 y 300 para pintar el siguiente objeto
 		obstaculos.push_back(pairAux);
 	}
 	// ofColor(232,134,70)
 	//Creamos los escenarios con sus respectivas medidas, colores y obstaculos
-	escenarioA = Escenario(grav, 0, ofGetHeight() / 2 - 8, ofColor(72,207,62), obstaculos);  
-	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, ofGetHeight() -4, ofColor(247,246,59), obstaculos);
+	escenarioA = Escenario(grav, 0, ofGetHeight() / 2 - 8, ofColor(72,207,62), obstaculos);  //ofColor(72,207,62)
+	escenarioB = Escenario(grav, ofGetHeight() / 2 + 4, ofGetHeight() -4, ofColor(247,246,59), obstaculos); //ofColor(247,246,59)
 	escenarioA.setup();
 	escenarioB.setup();
 
 	//Fuente Verdana para pintar textos
 	ofTrueTypeFont::setGlobalDpi(72);
-	verdana30.load("verdana.ttf", 50, true, true);
-	verdana30.setLineHeight(18.0f);
-	verdana30.setLetterSpacing(1.037);
+	verdana50.load("verdana.ttf", 50, true, true);
+	verdana50.setLineHeight(18.0f);
+	verdana50.setLetterSpacing(1.037);
 	
 
 	//Musica
-	music.load("music.mp3");
-	//music.play();
+	music.load("Dry Out.mp3");
+	music.play();
 
 }
 
@@ -71,6 +71,7 @@ void ofApp::update(){
 		else {
 			winner = 2;
 		}
+		music.stop();
 	}
 	else if (escenarioB.getHasCollided()) {
 		if (escenarioA.getHasCollided()) {
@@ -79,10 +80,12 @@ void ofApp::update(){
 		else {
 			winner = 1;
 		}
+		music.stop();
 	}
 	//amos jugadores han llegado a meta
 	else if (escenarioA.getHasFinished() && escenarioB.getHasFinished()) {
 		winner = 4;
+		music.stop();
 	}
 	else {
 	
@@ -114,11 +117,11 @@ void ofApp::draw(){
 		}
 		if (powerUpTypeEscA == 2) {
 			ofSetColor(ofColor(206, 250, 5));
-			verdana30.drawString("CONTROLES INVERTIDOS", ofGetWidth() / 2  -verdana30.getStringBoundingBox("CONTROLES INVERTIDOS", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3 );
+			verdana50.drawString("CONTROLES INVERTIDOS", ofGetWidth() / 2  -verdana50.getStringBoundingBox("CONTROLES INVERTIDOS", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3 );
 		}
 		if (powerUpTypeEscB == 2) {
 			ofSetColor(ofColor(206, 250, 5));
-			verdana30.drawString("CONTROLES INVERTIDOS", ofGetWidth() / 2 - verdana30.getStringBoundingBox("CONTROLES INVERTIDOS", 0, 0).getWidth() / 2, ofGetHeight() / 4);
+			verdana50.drawString("CONTROLES INVERTIDOS", ofGetWidth() / 2 - verdana50.getStringBoundingBox("CONTROLES INVERTIDOS", 0, 0).getWidth() / 2, ofGetHeight() / 4);
 		}
 	}
 
@@ -130,20 +133,20 @@ void ofApp::draw(){
 	ofSetColor(ofColor(206,250,5)); 
 	
 	if (winner == 1) {
-		verdana30.drawString("HAS GANADO", ofGetWidth() / 2 - verdana30.getStringBoundingBox("HAS GANADO", 0, 0).getWidth()/2 , ofGetHeight() / 4 );
-		verdana30.drawString("HAS PERDIDO", ofGetWidth() / 2 - verdana30.getStringBoundingBox("HAS PERDIDO", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
+		verdana50.drawString("HAS GANADO", ofGetWidth() / 2 - verdana50.getStringBoundingBox("HAS GANADO", 0, 0).getWidth()/2 , ofGetHeight() / 4 );
+		verdana50.drawString("HAS PERDIDO", ofGetWidth() / 2 - verdana50.getStringBoundingBox("HAS PERDIDO", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 	else if (winner == 2) {
-		verdana30.drawString("HAS PERDIDO", ofGetWidth() / 2 - verdana30.getStringBoundingBox("HAS PERDIDO", 0, 0).getWidth() / 2, ofGetHeight() / 4);
-		verdana30.drawString("HAS GANADO", ofGetWidth() / 2 - verdana30.getStringBoundingBox("HAS GANADO", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
+		verdana50.drawString("HAS PERDIDO", ofGetWidth() / 2 - verdana50.getStringBoundingBox("HAS PERDIDO", 0, 0).getWidth() / 2, ofGetHeight() / 4);
+		verdana50.drawString("HAS GANADO", ofGetWidth() / 2 - verdana50.getStringBoundingBox("HAS GANADO", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 	else if (winner == 3) {
-		verdana30.drawString("EMPATE", ofGetWidth() / 2 - 70 - verdana30.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4);
-		verdana30.drawString("EMPATE", ofGetWidth() / 2 - 70 - verdana30.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
+		verdana50.drawString("EMPATE", ofGetWidth() / 2 - verdana50.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4);
+		verdana50.drawString("EMPATE", ofGetWidth() / 2 - verdana50.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 	else if (winner == 4) {
-		verdana30.drawString("META ALCANZADA", ofGetWidth() / 2 - verdana30.getStringBoundingBox("META ALCANZADA", 0, 0).getWidth() / 2, ofGetHeight() / 4);
-		verdana30.drawString("META ALCANZADA", ofGetWidth() / 2 - verdana30.getStringBoundingBox("META ALCANZADA", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
+		verdana50.drawString("META ALCANZADA", ofGetWidth() / 2 - verdana50.getStringBoundingBox("META ALCANZADA", 0, 0).getWidth() / 2, ofGetHeight() / 4);
+		verdana50.drawString("META ALCANZADA", ofGetWidth() / 2 - verdana50.getStringBoundingBox("META ALCANZADA", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 
 }
