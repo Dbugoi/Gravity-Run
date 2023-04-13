@@ -138,8 +138,8 @@ void ofApp::draw(){
 		verdana30.drawString("HAS GANADO", ofGetWidth() / 2 - verdana30.getStringBoundingBox("HAS GANADO", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 	else if (winner == 3) {
-		verdana30.drawString("EMPATE", ofGetWidth() / 2 - 70 - verdana30.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4);
-		verdana30.drawString("EMPATE", ofGetWidth() / 2 - 70 - verdana30.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
+		verdana30.drawString("EMPATE", ofGetWidth() / 2 - verdana30.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4);
+		verdana30.drawString("EMPATE", ofGetWidth() / 2 - verdana30.getStringBoundingBox("EMPATE", 0, 0).getWidth() / 2, ofGetHeight() / 4 * 3);
 	}
 	else if (winner == 4) {
 		verdana30.drawString("META ALCANZADA", ofGetWidth() / 2 - verdana30.getStringBoundingBox("META ALCANZADA", 0, 0).getWidth() / 2, ofGetHeight() / 4);
