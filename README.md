@@ -1,7 +1,9 @@
 # Gravity-Run
 
 Este juego consiste en un circuito de obstáculos de scroll lateral que los jugadores tienen que completar.
+
 Cada jugador controla un cuadrado. Los jugadores usan una tecla cada uno para seleccionar el sentido de la  “gravedad”, de forma que el cuadrado pueda alternar entre el suelo y el techo. Los jugadores utilizan esta mecánica para esquivar los distintos obstáculos que aparecen.
+
 La pantalla esta dividida en dos de forma horizontal. La parte superior corresponderá al Jugador 1 y la inferior al Jugador 2. El escenario es el mismo en ambas mitades y se desplaza a la misma velocidad. 
 
 ## Victoria
